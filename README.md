@@ -1,6 +1,6 @@
 # tutum-client
 
-A Go client for [tutum](https://www.tutum.co/). The structure is
+A (work-in-progress) Go client for [tutum](https://www.tutum.co/). The structure is
 similar to the
 [python-tutum](https://github.com/tutumcloud/python-tutum/) but is
 instantiable rather than a single package.
