@@ -11,13 +11,15 @@ type baseAPI struct {
 	client   *http.Client
 	username string
 	apiKey   string
+	baseURL  string
 }
 
-func newBaseAPI(username, apiKey string) *baseAPI {
+func newBaseAPI(baseURL, username, apiKey string) *baseAPI {
 	return &baseAPI{
 		client:   &http.Client{},
 		username: username,
 		apiKey:   apiKey,
+		baseURL:  baseURL,
 	}
 }
 
@@ -55,6 +57,7 @@ func (me *baseAPI) handleResponse(response *http.Response, clientResponse interf
 		return requestError
 	}
 	defer response.Body.Close()
+	//io.Copy(os.Stdout, response.Body)
 	if err := json.NewDecoder(response.Body).Decode(clientResponse); err != nil {
 		return err
 	}
@@ -62,5 +65,5 @@ func (me *baseAPI) handleResponse(response *http.Response, clientResponse interf
 }
 
 func (me *baseAPI) url(path string) string {
-	return fmt.Sprintf("https://dashboard.tutum.co/api/v1%s", path)
+	return fmt.Sprintf("%s%s", me.baseURL, path)
 }

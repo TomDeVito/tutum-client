@@ -11,10 +11,18 @@ type TutumAPI interface {
 	Service() ServiceAPI
 }
 
-type tutumAPI struct{}
+type tutumAPI struct {
+	username string
+	apiKey   string
+	baseURL  string
+}
 
-func NewTutumAPI() TutumAPI {
-	return &tutumAPI{}
+func NewTutumAPI(username, apiKey, baseURL string) TutumAPI {
+	return &tutumAPI{
+		username: username,
+		apiKey:   apiKey,
+		baseURL:  baseURL,
+	}
 }
 
 func (me *tutumAPI) Action() ActionAPI {
@@ -38,7 +46,7 @@ func (me *tutumAPI) NodeType() NodeTypeAPI {
 }
 
 func (me *tutumAPI) Provider() ProviderAPI {
-	return struct{}{}
+	return NewProviderAPI(me.baseURL, me.username, me.apiKey)
 }
 
 func (me *tutumAPI) Region() RegionAPI {
