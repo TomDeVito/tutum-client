@@ -54,5 +54,5 @@ func (me *tutumAPI) Region() RegionAPI {
 }
 
 func (me *tutumAPI) Service() ServiceAPI {
-	return struct{}{}
+	return NewServiceAPI(me.baseURL, me.username, me.apiKey)
 }
