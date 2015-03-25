@@ -2,6 +2,7 @@ package tutum
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -57,6 +58,11 @@ func (me *baseAPI) handleResponse(response *http.Response, clientResponse interf
 	if requestError != nil {
 		return requestError
 	}
+
+	if response.StatusCode < 200|response.StatusCode > 299 {
+		return errors.New(fmt.Sprintf("Received status code: %d", response.StatusCode))
+	}
+
 	defer response.Body.Close()
 	//io.Copy(os.Stdout, response.Body)
 	if err := json.NewDecoder(response.Body).Decode(clientResponse); err != nil {
