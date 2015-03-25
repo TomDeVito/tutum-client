@@ -17,3 +17,8 @@ type ListServicesResponse struct {
 	Meta    *MetaResponse `json:"meta"`
 	Objects []Service     `json:"objects"`
 }
+
+type ListContainersResponse struct {
+	Meta    *MetaResponse `json:"meta"`
+	Objects []Container   `json:"objects"`
+}

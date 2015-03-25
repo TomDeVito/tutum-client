@@ -29,13 +29,14 @@ func (me *baseAPI) get(path string, clientResponse interface{}) error {
 }
 
 func (me *baseAPI) post(path string, data io.Reader, clientResponse interface{}) error {
-	response, err := me.do("GET", path, nil)
+	response, err := me.do("POST", path, data)
 	return me.handleResponse(response, clientResponse, err)
 }
 
 func (me *baseAPI) do(method, path string, body io.Reader) (*http.Response, error) {
 	req, err := http.NewRequest(method, me.url(path), body)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	me.addHeaders(req)
@@ -59,6 +60,7 @@ func (me *baseAPI) handleResponse(response *http.Response, clientResponse interf
 	defer response.Body.Close()
 	//io.Copy(os.Stdout, response.Body)
 	if err := json.NewDecoder(response.Body).Decode(clientResponse); err != nil {
+		fmt.Println(err)
 		return err
 	}
 	return nil

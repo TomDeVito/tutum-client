@@ -30,7 +30,7 @@ func (me *tutumAPI) Action() ActionAPI {
 }
 
 func (me *tutumAPI) Container() ContainerAPI {
-	return struct{}{}
+	return NewContainerAPI(me.baseURL, me.username, me.apiKey)
 }
 
 func (me *tutumAPI) Node() NodeAPI {
