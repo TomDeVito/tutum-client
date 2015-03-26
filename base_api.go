@@ -34,6 +34,11 @@ func (me *baseAPI) post(path string, data io.Reader, clientResponse interface{})
 	return me.handleResponse(response, clientResponse, err)
 }
 
+func (me *baseAPI) del(path string, clientResponse interface{}) error {
+	response, err := me.do("DELETE", path, nil)
+	return me.handleResponse(response, clientResponse, err)
+}
+
 func (me *baseAPI) do(method, path string, body io.Reader) (*http.Response, error) {
 	req, err := http.NewRequest(method, me.url(path), body)
 	if err != nil {
@@ -59,7 +64,7 @@ func (me *baseAPI) handleResponse(response *http.Response, clientResponse interf
 		return requestError
 	}
 
-	if response.StatusCode < 200|response.StatusCode > 299 {
+	if response.StatusCode < 200 || response.StatusCode > 299 {
 		return errors.New(fmt.Sprintf("Received status code: %d", response.StatusCode))
 	}
 
