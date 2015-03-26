@@ -49,7 +49,7 @@ type Service struct {
 	Roles                []string          `json:"roles,omitempty"`
 	Privileged           bool              `json:"privileged,omitempty"`
 	DeploymentStrategy   string            `json:"deployment_strategy,omitempty"`
-	Tags                 []string          `json:"tags,omitempty"`
+	Tags                 []Tag             `json:"tags,omitempty"`
 	//Bindings
 	//LinkVariables
 }
@@ -72,6 +72,11 @@ type LinkService struct {
 	FromService string `json:"from_service,omitempty"`
 	Name        string `json:"name,omitempty"`
 	ToService   string `json:"to_service,omitempty"`
+}
+
+type Tag struct {
+	Name        string `json:"name,omitempty"`
+	ResourceUri string `json:"resource_uri,omitempty"`
 }
 
 type serviceAPI struct {
