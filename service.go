@@ -50,7 +50,7 @@ type Service struct {
 	Privileged           bool              `json:"privileged,omitempty"`
 	DeploymentStrategy   string            `json:"deployment_strategy,omitempty"`
 	Tags                 []Tag             `json:"tags,omitempty"`
-	//Bindings
+	Bindings             []Binding         `json:"bindings,omitempty"`
 	//LinkVariables
 }
 
@@ -66,6 +66,13 @@ type ContainerPorts struct {
 type ContainerEnvVar struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
+}
+
+type Binding struct {
+	HostPath      string `json:"host_path"`
+	ContainerPath string `json:"container_path"`
+	Rewritable    bool   `json:"rewritable"`
+	VolumesFrom   string `json:"volumesFrom"`
 }
 
 type LinkService struct {
