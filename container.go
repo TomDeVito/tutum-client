@@ -44,10 +44,6 @@ type CCPInfo struct {
 	PortName    string `json:"port_name,omitempty"`
 	Protocol    string `json:"protocol,omitempty"`
 	Published   bool   `json:"published,omitempty"`
-	////	Container string `json:"container"`
-	//	InnerPort int    `json:"inner_port"`
-	//	OuterPort int    `json:"outer_port"`
-	//	Protocol  string `json:"protocol"`
 }
 
 type containerAPI struct {
