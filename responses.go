@@ -22,3 +22,8 @@ type ListContainersResponse struct {
 	Meta    *MetaResponse `json:"meta"`
 	Objects []Container   `json:"objects"`
 }
+
+type ListNodesResponse struct {
+	Meta    *MetaResponse `json:"meta"`
+	Objects []Node        `json:"objects"`
+}

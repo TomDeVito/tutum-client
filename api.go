@@ -34,7 +34,7 @@ func (me *tutumAPI) Container() ContainerAPI {
 }
 
 func (me *tutumAPI) Node() NodeAPI {
-	return struct{}{}
+	return NewNodeAPI(me.baseURL, me.username, me.apiKey)
 }
 
 func (me *tutumAPI) NodeCluster() NodeClusterAPI {
