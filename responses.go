@@ -27,3 +27,8 @@ type ListNodesResponse struct {
 	Meta    *MetaResponse `json:"meta"`
 	Objects []Node        `json:"objects"`
 }
+
+type ListNodeClusterResponse struct {
+	Meta    *MetaResponse `json:"meta"`
+	Objects []NodeCluster `json:"objects"`
+}

@@ -23,7 +23,7 @@ type Node struct {
 }
 
 type NodeTag struct {
-	Name string `json:"tags,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type nodeAPI struct {

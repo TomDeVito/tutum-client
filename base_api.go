@@ -1,6 +1,7 @@
 package tutum
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -65,7 +66,9 @@ func (me *baseAPI) handleResponse(response *http.Response, clientResponse interf
 	}
 
 	if response.StatusCode < 200 || response.StatusCode > 299 {
-		return errors.New(fmt.Sprintf("Received status code: %d", response.StatusCode))
+		buf := new(bytes.Buffer)
+		buf.ReadFrom(response.Body)
+		return errors.New(fmt.Sprintf("Received status code: %d, %s", response.StatusCode, buf.String()))
 	}
 
 	defer response.Body.Close()
