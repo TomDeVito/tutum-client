@@ -1,7 +1,12 @@
 package tutum
 
+import (
+	"fmt"
+)
+
 type NodeAPI interface {
 	List() (*ListNodesResponse, error)
+	Fetch(uuid string) (*Node, error)
 }
 
 type Node struct {
@@ -39,6 +44,14 @@ func NewNodeAPI(baseURL, username, apiKey string) NodeAPI {
 func (me *nodeAPI) List() (*ListNodesResponse, error) {
 	response := &ListNodesResponse{}
 	if err := me.get("/node/", response); err != nil {
+		return nil, err
+	}
+	return response, nil
+}
+
+func (me *nodeAPI) Fetch(uuid string) (*Node, error) {
+	response := &Node{}
+	if err := me.get(fmt.Sprintf("/node/%s/", uuid), response); err != nil {
 		return nil, err
 	}
 	return response, nil

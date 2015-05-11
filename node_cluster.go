@@ -14,12 +14,13 @@ type NodeClusterAPI interface {
 }
 
 type NodeCluster struct {
-	Name           string `json:"name,omitempty"`
-	Uuid           string `json:"uuid,omitempty"`
-	Region         string `json:"region,omitempty"`
-	State          string `json:"state,omitempty"`
-	NodeType       string `json:"node_type,omitempty"`
-	TargetNumNodes int32  `json:"target_num_nodes,omitempty"`
+	Name           string   `json:"name,omitempty"`
+	Uuid           string   `json:"uuid,omitempty"`
+	Region         string   `json:"region,omitempty"`
+	State          string   `json:"state,omitempty"`
+	NodeType       string   `json:"node_type,omitempty"`
+	Nodes          []string `json:"nodes,omitempty"`
+	TargetNumNodes int32    `json:"target_num_nodes,omitempty"`
 }
 
 type nodeClusterAPI struct {
