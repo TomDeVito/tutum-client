@@ -24,11 +24,6 @@ type NodeCluster struct {
 	Tags           []Tag    `json:"tags,omitempty"`
 }
 
-type Tag struct {
-	Name        string `json:"name,omitempty"`
-	ResourceUri string `json:"resource_uri,omitempty"`
-}
-
 type nodeClusterAPI struct {
 	*baseAPI
 }
