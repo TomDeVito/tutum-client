@@ -21,6 +21,12 @@ type NodeCluster struct {
 	NodeType       string   `json:"node_type,omitempty"`
 	Nodes          []string `json:"nodes,omitempty"`
 	TargetNumNodes int32    `json:"target_num_nodes,omitempty"`
+	Tags           []Tag    `json:"tags,omitempty"`
+}
+
+type Tag struct {
+	Name        string `json:"name,omitempty"`
+	ResourceUri string `json:"resource_uri,omitempty"`
 }
 
 type nodeClusterAPI struct {
